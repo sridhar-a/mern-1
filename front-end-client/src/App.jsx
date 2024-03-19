@@ -5,7 +5,7 @@ function App() {
 
   // Fetching message from backend on mount
   useEffect(() => {
-    fetch("http://localhost:4000")
+    fetch(`${process.env.BACK_END_URI}`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
