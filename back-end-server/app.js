@@ -10,6 +10,7 @@ const corsOptions = {
 }
 app.use(express.json());
 app.use(cors(corsOptions));
+app.set('trust proxy', true);
 
 // connect MongoDB
 mongoose.connect(process.env.MONGODB_URI).then(() => {
