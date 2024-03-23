@@ -1,5 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
@@ -21,8 +22,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 // connect MongoDB
 // mongoose.connect(process.env.MONGODB_URI).then(() => {
 //     app.listen(PORT, () => {
@@ -31,6 +30,27 @@ app.use((req, res, next) => {
 // }).catch(err => {
 //     console.log(err);
 // });
+
+const mongodb_uri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/`;
+console.log("mongodb_uri : " + mongodb_uri);
+const client = new MongoClient(mongodb_uri);
+
+app.get("/skills", (req, res) => {
+  async function run() {
+    try {
+      await client.connect();
+      const db = client.db(`${process.env.DB_NAME}`);
+      // console.log(db);
+      const collection = db.collection(`${process.env.DB_COLLECTION_NAME}`);
+      const skills = await collection.find({}, {name: 1, percentage: 1}).toArray();
+      // console.log(skills);
+      res.send(skills);
+    } finally {
+      await client.close();
+    }
+  }
+  run().catch(console.error);
+});
 
 // route
 app.get("/", (req, res) => {

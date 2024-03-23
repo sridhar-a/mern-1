@@ -1,0 +1,17 @@
+/* * {box-sizing: border-box} */
+
+.skills-wrapper {
+    width: 500px;
+  }
+  
+  .skill-container {
+    width: 100%;
+    background-color: #ddd;
+  }
+  
+  .skill {
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+  }

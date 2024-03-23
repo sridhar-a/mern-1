@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import './App.css'
+import Skills from "./Components/Skills";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <h1>Front End - Client</h1>
       <h2>{message}</h2>
+      <Skills />
     </div>
   );
 }
