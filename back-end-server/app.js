@@ -31,7 +31,8 @@ app.use((req, res, next) => {
 //     console.log(err);
 // });
 
-const mongodb_uri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/`;
+// const mongodb_uri = `${DB_CLOUD_OR_LOCAL}://${process.env.DB_HOST}:${process.env.DB_PORT}/`;
+const mongodb_uri = `${process.env.MONGODB_URI}`;
 console.log("mongodb_uri : " + mongodb_uri);
 const client = new MongoClient(mongodb_uri);
 
