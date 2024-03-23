@@ -1,8 +1,8 @@
 const express = require("express");
-// const mongoose = require("mongoose");
 const { MongoClient } = require("mongodb");
 const app = express();
 const cors = require("cors");
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
@@ -14,25 +14,14 @@ const corsOptions = {
 };
 app.use(express.json());
 app.use(cors(corsOptions));
-// app.set('trust proxy', true);
 
 app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Origin", FRONT_END_URI);
   next();
 });
 
-// connect MongoDB
-// mongoose.connect(process.env.MONGODB_URI).then(() => {
-//     app.listen(PORT, () => {
-//         console.log(`App is Listening on PORT ${PORT}`);
-//     })
-// }).catch(err => {
-//     console.log(err);
-// });
-
 // const mongodb_uri = `${DB_CLOUD_OR_LOCAL}://${process.env.DB_HOST}:${process.env.DB_PORT}/`;
-const mongodb_uri = `${process.env.MONGODB_URI}`;
+const mongodb_uri = `${process.env.MONGODB_URI}/`;
 console.log("mongodb_uri : " + mongodb_uri);
 const client = new MongoClient(mongodb_uri);
 

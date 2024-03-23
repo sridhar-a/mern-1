@@ -9,8 +9,8 @@ export default function Skills() {
 
   React.useEffect(() => {
     axios.get(`${BACK_END_URI}/skills`).then((response) => {
-      // console.log(typeof response.data);
-      // console.log(response.data);
+      console.log(typeof response.data);
+      console.log(response.data);
       setSkills(response.data);
     });
   }, []);
@@ -25,11 +25,11 @@ export default function Skills() {
             <div
               className="skill"
               style={{
-                width: `${skills[item].percentage}%`,
+                width: `${skills[item].percent}%`,
                 backgroundColor: "#04AA6D",
               }}
             >
-              {skills[item].percentage}%
+              {skills[item].percent}%
             </div>
           </div>
         </div>
